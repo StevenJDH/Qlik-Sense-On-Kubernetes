@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo 'executing "3_minikube.sh"'
 # this will install minikube Kubernetes and Helm
 
@@ -42,7 +44,7 @@ touch /home/vagrant/.kube/config
 
 echo 'Starting minikube local cluster'
 
-minikube start --kubernetes-version v1.14.0 --memory 4096 --cpus=2 --vm-driver=none
+minikube start --kubernetes-version v1.15.0 --memory 8000 --cpus=2 --vm-driver=none
 
 #sudo cp /root/.kube $HOME/.kube
 sudo chown -R vagrant /home/vagrant/.kube
@@ -55,6 +57,12 @@ sudo chgrp -R vagrant /home/vagrant/.minikube
 echo 'Getting Helm'
 curl -s https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
 chmod 700 get_helm.sh
-# changed on 21-05-2019: helm version 2.14 doesn't work, getting an older version
-./get_helm.sh --version v2.13.1
+# Helm version 2.14 doesn't work, use the older v2.13.1 version if needed.
+./get_helm.sh --version v2.14.2
+
+#Initialize Helm Tiller pod, upgrade and update the repos
+helm init
+helm init --wait --upgrade
+helm repo update
+
 

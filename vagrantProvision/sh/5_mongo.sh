@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo 'execute "5_mongo.sh"'
 
 echo 'Creating PVC for MongoDB'

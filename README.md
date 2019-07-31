@@ -1,30 +1,66 @@
-# Qlik Sense Enterprise on Kubernetes
+# Qlik Sense Enterprise On Kubernetes (QSEoK)
+This will automate the provisioning of a local minikube (a non-production single-node Kubernetes) virtual machine in VirtualBox with Qlik Sense Enterprise using Vagrant. The purpose of this fork is to further simply things and to build on the great work that has been done already. This fork will also attempt to provide the latest guest OS, Kubernetes, Docker, and other components as supported requirements permit. An this brings us to our next sections.
 
-The attached <a href="https://github.com/ChristofSchwarz/qs_on_Kubernetes/blob/master/QSEonK8s%20Logs.qvf?raw=true">.qvf app</a> connects to the Kubernetes API to read the name of the pods and 
- - computes the actual deeplink to the log of the container(s) in the pod
- - imports some of the logs directly into the app
+## Host system requirements
+* Hardware assisted visualization. Type `systeminfo` in the Command window and ensure you see a `Yes` for each item under the "Hyper-V Requirements" section.
+* A 64-bit multi-core CPU, preferably a quad-core.
+* At least 8GB of RAM, although a minimum of 16GB is preferable.
+* Internet access, preferably a fast one.
+* More than 10GB of free disc space.
 
-Current version: __0.12__
+## Prerequisites
+* A license from Qlik that is enabled for Multi-Cloud (a.k.a. Qlik Sense Enterprise for Kubernetes)
+* [Vagrant](https://www.vagrantup.com/downloads.html) installed, and ensure that you reboot your system.
+* [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 6.0.x only installed, since this is the latest supported by Vagrant.
 
-Currently I import those logs: engine, edge-auth
+## How to start the setup process
+Open a Command window and change the working directory to the vagrantProvision folder. Then, type `vagrant up`, and after, grab some popcorn. 
 
- To enable the Kubernetes API in your cluster with this command
-```
-kubectl proxy --address='ip.of.the.host' --port=8001 --accept-hosts='^*$'
-```
-Hint: if you dont know the ip-address under which the port can be accessed, type the below. It is one of the shown IPs.
-```
-ifconfig | grep Bcast
-```
+To get terminal window access for the underlying Linux distribution:
 
- * The hostname, port must also be set in the Load Script of the app (page Main).
- * If the REST connector configuration is missing after import, just create a new "GET" Rest Connection to any url for example https://jsonplaceholder.typicode.com/todos/1 , no authentication. Correct the statement on page "Main" in the script where it reads LIB CONNECT TO 'your_new_REST_conn';
+      vagrant ssh
+
+Type `exit` to get back into your host system prompt.
+
+If you want to stop and remove the VM properly (also if you want to restart the provisioning process), type:
+
+      vagrant destroy
+
+## First time login
+Once everything is set up and all pods are running (check with: kubectl get pods), you can navigate your browser to [https://elastic.example:32443/console](https://elastic.example:32443/console). If everything is correct you will be redirected to port :32123 for login. For simplicity reasons, the installation of QSEoK will use the built-in user authentication (no 3rd-party Identity Provider). Choose one of the users below. Remember: the first one to log in to a fresh installation will be the site administrator (TenentAdmin). 
+  
+ * user: harley@qlik.example, password: Password1!
+ * user: barb@qlik.example, password: Password1!
+ * user: sim@qlik.example, password: Password1!	
+ * For more users, see [https://support.qlik.com/articles/000076585](https://support.qlik.com/articles/000076585)
+
+Next you will get back to [https://elastic.example:32443/console](https://elastic.example:32443/console) where you'll have a box to enter the site license (a JWT token you got from your Qlik representative). Once applied, you may see "unauthorized" and may have to re-login. That is only once after the site license has been set. 
+
+[https://elastic.example:32443/explore](https://elastic.example:32443/explore) will show the new hub. You can create or upload apps there.
+
+## Encountering problems?
+If you are having issues with running the script or with Qlik Sense, please check the Wiki for help and additional information as it becomes available.
+
+## Do you have any questions?
+Many commonly asked questions are answered in the FAQ:
+[https://github.com/StevenJDH/Code-Librarian/wiki/FAQ](https://github.com/StevenJDH/Code-Librarian/wiki/FAQ)
+
+## Need to contact me?
+I can be reached here directly at [https://21.co/stevenjdh](https://21.co/stevenjdh "Contact Page")
+
+## Want to show your support?
+
+|Method       | Address                                                                                                    |
+|------------:|:-----------------------------------------------------------------------------------------------------------|
+|PayPal:      | [https://www.paypal.me/stevenjdh](https://www.paypal.me/stevenjdh "Steven's Paypal Page")                  |
+|Bitcoin:     | 3GyeQvN6imXEHVcdwrZwKHLZNGdnXeDfw2                                                                         |
+|Litecoin:    | MAJtR4ccdyUQtiiBpg9PwF2AZ6Xbk5ioLm                                                                         |
+|Ethereum:    | 0xa62b53c1d49f9C481e20E5675fbffDab2Fcda82E                                                                 |
+|Dash:        | Xw5bDL93fFNHe9FAGHV4hjoGfDpfwsqAAj                                                                         |
+|Zcash:       | t1a2Kr3jFv8WksgPBcMZFwiYM8Hn5QCMAs5                                                                        |
+|PIVX:        | DQq2qeny1TveZDcZFWwQVGdKchFGtzeieU                                                                         |
+|Ripple:      | rLHzPsX6oXkzU2qL12kHCH8G8cnZv1rBJh<br />Destination Tag: 2357564055                                        |
+|Monero:      | 4GdoN7NCTi8a5gZug7PrwZNKjvHFmKeV11L6pNJPgj5QNEHsN6eeX3D<br />&#8618;aAQFwZ1ufD4LYCZKArktt113W7QjWvQ7CWDXrwM8yCGgEdhV3Wt|
 
 
-![alttext](https://github.com/ChristofSchwarz/pics/raw/master/k8slog1.png "screenshot")
-
-More and more log tables will be added, like the below
-
-![alttext](https://github.com/ChristofSchwarz/pics/raw/master/k8slog2.png "screenshot")
-
-
+// Steven Jenkins De Haro ("StevenJDH" on GitHub)

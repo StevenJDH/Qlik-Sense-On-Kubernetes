@@ -1,0 +1,4 @@
+﻿## Ignore resources and files used for testing.
+
+# General ignores
+/[Rr]esources

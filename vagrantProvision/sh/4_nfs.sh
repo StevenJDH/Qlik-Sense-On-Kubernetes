@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo 'executing "4_nfs.sh"'
 
 echo 'Installing storageClass on NFS provider'

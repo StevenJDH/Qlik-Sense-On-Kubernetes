@@ -1,6 +1,8 @@
+#This setting accepts the EULA for the product
 engine:
   acceptEULA: "yes"
 
+#These setting specifies the storage for the services
 global:
   persistence:
     storageClass: localnfs
@@ -8,10 +10,7 @@ global:
 mongodb:
   uri: mongodb://qlik:Qlik1234@mongo-mongodb.default.svc.cluster.local:27017/qsefe
 
-edge-auth:
-  oidc:
-    enabled: true
-    redirectUri: https://elastic.example:32443/login/callback
+# MINIKUBE SPECIFIC SETTINGS (do not use with other K8 providers)_____________
 
 elastic-infra:
   nginx-ingress:
@@ -31,3 +30,8 @@ management-console:
   ingress:
     annotations:
       nginx.ingress.kubernetes.io/auth-signin: https://$host:32443/login?returnto=$request_uri
+
+edge-auth:
+  oidc:
+    enabled: true
+    redirectUri: https://elastic.example:32443/login/callback

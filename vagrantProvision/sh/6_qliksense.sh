@@ -1,3 +1,4 @@
+#!/bin/bash
 
 echo 'Adding stable and edge reop from qlik.bintray.com'
 helm repo add qlik-stable https://qlik.bintray.com/stable
@@ -8,5 +9,5 @@ helm repo update
 echo 'installing stable "qliksense-init"'
 helm install -n qlikinit qlik-stable/qliksense-init
 
-echo 'installing stable "qliksense"'
+echo 'installing stable "Qlik Sense Enterprise for Kubernetes"'
 helm install -n qlik qlik-stable/qliksense -f /vagrant/yaml/qliksense.yaml 

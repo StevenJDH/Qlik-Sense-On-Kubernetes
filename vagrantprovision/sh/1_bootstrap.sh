@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo 'executing "1_bootstrap.sh"'
 echo 'Updating Ubuntu'
 sudo apt-get -qq -y update
