@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hellochris-svc1
+spec:
+  type: NodePort
+  selector:
+    app: hellochris-app1 
+    # same key-value pair as in metadata.labels section of Pod 
+  ports: 
+  - port: 8074
+    # matching the port number of the app as in pod1.yaml
+    nodePort: 31002
+    protocol: TCP

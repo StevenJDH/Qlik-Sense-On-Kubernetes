@@ -1,0 +1,21 @@
+# note ReplicationControllers are outdated, deployment (replica sets) are the new way ...
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: hellochris-rc
+spec:
+  replicas: 2
+  selector:
+    app: hellochris-rcapp
+  template:
+    metadata:
+      name: hellochris-rcpod
+      labels:
+        app: hellochris-rcapp
+    spec:
+      containers:
+      - name: hellochris-container
+        image: qristof/hello-christof
+        ports: 
+        - containerPort: 8074
