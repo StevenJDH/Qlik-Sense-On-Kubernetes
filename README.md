@@ -1,4 +1,9 @@
 # Qlik Sense Enterprise On Kubernetes (QSEoK)
+
+![GitHub All Releases](https://img.shields.io/github/downloads/StevenJDH/Qlik-Sense-On-Kubernetes/total)
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/StevenJDH/Qlik-Sense-On-Kubernetes?include_prereleases)
+![GitHub](https://img.shields.io/github/license/StevenJDH/Qlik-Sense-On-Kubernetes)
+
 This will automate the provisioning of a local minikube (a non-production single-node Kubernetes) virtual machine in VirtualBox with Qlik Sense Enterprise using Vagrant. The purpose of this fork is to further simply things and to build on the great work that has been done already. This fork will also attempt to provide the latest guest OS, Kubernetes, Docker, and other components as supported requirements permit. An this brings us to our next sections.
 
 ![Vagrant script demo](preview-fast.gif "Demo")
@@ -56,9 +61,6 @@ If you are having issues with running the script or with Qlik Sense, please chec
 ## Do you have any questions?
 Many commonly asked questions are answered in the FAQ:
 [https://github.com/StevenJDH/Code-Librarian/wiki/FAQ](https://github.com/StevenJDH/Code-Librarian/wiki/FAQ)
-
-## Need to contact me?
-I can be reached here directly at [https://21.co/stevenjdh](https://21.co/stevenjdh "Contact Page")
 
 ## Want to show your support?
 
